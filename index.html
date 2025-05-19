@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popup Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* Overlay background */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    /* Popup container */
+    .popup {
+      background: white;
+      width: 600px;
+      max-width: 90%;
+      display: flex;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .popup-text {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .popup-image {
+      flex: 1;
+      background-size: cover;
+      background-position: center;
+      min-height: 250px;
+    }
+
+    .close-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #444;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="openPopup()">Show Popup</button>
+
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup">
+      <div class="popup-text">
+        <h2>Welcome!</h2>
+        <p>This is a simple popup with text on the left and an image on the right.</p>
+        <button class="close-btn" onclick="closePopup()">Close</button>
+      </div>
+      <div class="popup-image" style="background-image: url('https://via.placeholder.com/300');">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openPopup() {
+      document.getElementById('popupOverlay').style.display = 'flex';
+    }
+
+    function closePopup() {
+      document.getElementById('popupOverlay').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
