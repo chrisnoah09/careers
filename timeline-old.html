@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Timeline</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 10px;
+    }
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: #000;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+    .timeline-box {
+      padding: 20px;
+      background: white;
+      position: relative;
+      border-radius: 6px;
+      width: 40%;
+      margin: 20px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .timeline-box.left {
+      left: 0;
+    }
+    .timeline-box.right {
+      left: 60%;
+    }
+    .timeline-box::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      width: 25px;
+      height: 25px;
+      background-color: #000;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    .timeline-box.left::after {
+      right: -13px;
+    }
+    .timeline-box.right::after {
+      left: -13px;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      z-index: 1001;
+    }
+    .popup img {
+      max-width: 100%;
+      height: auto;
+      text-align: center;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+    .close-btn {
+      float: right;
+      cursor: pointer;
+      font-size: 18px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div class="timeline">
+  <div class="timeline-box left" onclick="openPopup('popup1')">
+    Event 1
+  </div>
+  <div class="timeline-box right" onclick="openPopup('popup2')">
+    Event 2
+  </div>
+  <div class="timeline-box left" onclick="openPopup('popup3')">
+    College <h1>2032</h1><img width="100" src="coringao.png" alt="Corinthians">
+  </div>
+  <div class="timeline-box right" onclick="openPopup('popup4')">
+    Career Choice <h1>2032</h1><img width="100" src="coringao.png" alt="Corinthians">
+  </div>
+</div>
+
+<div id="overlay" class="overlay" onclick="closePopup()"></div>
+
+<div id="popup1" class="popup">
+  <span class="close-btn" onclick="closePopup()">&times;</span>
+  <h2>Event 1 Details</h2>
+  <p>Some information about event 1.</p>
+  <img src="https://via.placeholder.com/300" alt="Event 1 Image">
+</div>
+
+<div id="popup2" class="popup">
+  <span class="close-btn" onclick="closePopup()">&times;</span>
+  <h2>Event 2 Details</h2>
+  <p>Some information about event 2.</p>
+  <img src="https://via.placeholder.com/300" alt="Event 2 Image">
+</div>
+
+<div id="popup3" class="popup">
+  <span class="close-btn" onclick="closePopup()">&times;</span>
+  <h2>College</h2>
+  <p>Physical Trainer at S.C. Corinthians Paulista.</p>
+  <img width="200" src="coringao.png" alt="Corinthians">
+</div>
+
+<div id="popup4" class="popup">
+  <span class="close-btn" onclick="closePopup()">&times;</span>
+  <h2>Career</h2>
+  <p>Head Athletic/Physical Trainer at S.C. Corinthians Paulista in Brazil.</p>
+  <img width="200" src="coringao.png" alt="Corinthians">
+</div>
+
+<script>
+  function openPopup(id) {
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById(id).style.display = 'block';
+  }
+
+  function closePopup() {
+    document.getElementById('overlay').style.display = 'none';
+    const popups = document.querySelectorAll('.popup');
+    popups.forEach(popup => popup.style.display = 'none');
+  }
+</script>
+
+</body>
+</html>

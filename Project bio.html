@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Athletic Trainer Vision Board</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-top: 40px;
+      color: #2c3e50;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px auto;
+      max-width: 1000px;
+      gap: 20px;
+    }
+
+    .box {
+      background-color: #fff;
+      border: 2px solid #ccc;
+      width: 200px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+      border-color: #3498db;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 5px;
+      width: 80%;
+      max-width: 600px;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #aaa;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #333;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Athletic Trainer</h1>
+
+  <!-- First Section: 2 Rows x 3 Boxes -->
+  <div class="grid">
+    <div class="box" onclick="openModal(0)">Box 1</div>
+    <div class="box" onclick="openModal(1)">Box 2</div>
+    <div class="box" onclick="openModal(2)">Box 3</div>
+    <div class="box" onclick="openModal(3)">Box 4</div>
+    <div class="box" onclick="openModal(4)">Box 5</div>
+    <div class="box" onclick="openModal(5)">Box 6</div>
+  </div>
+
+  <h2>Vision Board: Path to becoming an Athletic Trainer</h2>
+
+  <!-- Vision Board Section -->
+  <div class="grid">
+    <!-- Row with 2 boxes -->
+    <div class="box" onclick="openModal(6)">Box 7</div>
+    <div class="box" onclick="openModal(7)">Box 8</div>
+  </div>
+
+  <div class="grid">
+    <!-- 2 Rows of 3 boxes -->
+    <div class="box" onclick="openModal(8)">Box 9</div>
+    <div class="box" onclick="openModal(9)">Box 10</div>
+    <div class="box" onclick="openModal(10)">Box 11</div>
+    <div class="box" onclick="openModal(11)">Box 12</div>
+    <div class="box" onclick="openModal(12)">Box 13</div>
+    <div class="box" onclick="openModal(13)">Box 14</div>
+  </div>
+
+  <div class="grid">
+    <!-- Final Row of 2 boxes -->
+    <div class="box" onclick="openModal(14)">Box 15</div>
+    <div class="box" onclick="openModal(15)">Box 16</div>
+  </div>
+
+  <!-- 16 Modals -->
+  <div id="modals"></div>
+
+  <script>
+    const modalContainer = document.getElementById("modals");
+
+    for (let i = 0; i < 16; i++) {
+      modalContainer.innerHTML += `
+        <div class="modal" id="modal${i}">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(${i})">&times;</span>
+            <h3>Box ${i + 1} Content</h3>
+            <p>You can add your text here.</p>
+            <img src="https://via.placeholder.com/400x200" alt="Placeholder Image"/>
+          </div>
+        </div>
+      `;
+    }
+
+    function openModal(index) {
+      document.getElementById(`modal${index}`).style.display = "block";
+    }
+
+    function closeModal(index) {
+      document.getElementById(`modal${index}`).style.display = "none";
+    }
+
+    // Close modal when clicking outside the modal content
+    window.onclick = function(event) {
+      for (let i = 0; i < 16; i++) {
+        const modal = document.getElementById(`modal${i}`);
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      }
+    }
+  </script>
+</body>
+</html>

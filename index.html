@@ -1,85 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Popup Example</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Athletic Trainer Vision Board</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+      color: #333;
     }
 
-    /* Overlay background */
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
+    h1, h2 {
+      text-align: center;
+      margin-top: 40px;
+      color: #2c3e50;
     }
 
-    /* Popup container */
-    .popup {
-      background: white;
-      width: 600px;
-      max-width: 90%;
-      display: flex;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    .popup-text {
-      flex: 1;
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
       padding: 20px;
     }
 
-    .popup-image {
-      flex: 1;
-      background-size: cover;
-      background-position: center;
-      min-height: 250px;
+    .row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      gap: 20px;
     }
 
-    .close-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #444;
-      color: #fff;
-      border: none;
+    .box {
+      background-color: #fff;
+      border: 2px solid #ccc;
+      width: 200px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+      border-color: #3498db;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 700px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+    }
+
+    .modal-text {
+      flex: 1 1 300px;
+    }
+
+    .modal-text h3 {
+      margin-top: 0;
+    }
+
+    .modal-img {
+      flex: 1 1 300px;
+      text-align: right;
+    }
+
+    .modal-img img {
+      max-width: 100%;
+      height: auto;
       border-radius: 5px;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #aaa;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #333;
+    }
+
+    @media (max-width: 600px) {
+      .modal-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .modal-img {
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <button onclick="openPopup()">Show Popup</button>
-
-  <div class="popup-overlay" id="popupOverlay">
-    <div class="popup">
-      <div class="popup-text">
-        <h2>Welcome!</h2>
-        <p>This is a simple popup with text on the left and an image on the right.</p>
-        <button class="close-btn" onclick="closePopup()">Close</button>
-      </div>
-      <div class="popup-image" style="background-image: url('https://via.placeholder.com/300');">
-      </div>
+  <!-- Section 1 -->
+  <h1>Athletic Trainer</h1>
+  <div class="section">
+    <div class="row">
+      <div class="box" onclick="openModal(0)">Day-to-Day Work</div>
+      <div class="box" onclick="openModal(1)">Biology Concepts</div>
+      <div class="box" onclick="openModal(2)">Required Education</div>
+    </div>
+    <div class="row">
+      <div class="box" onclick="openModal(3)">Salary Range and Work Setting</div>
+      <div class="box" onclick="openModal(4)">Why this career?</div>
     </div>
   </div>
 
+  <!-- Section 2 -->
+  <h2>Vision Board: Path to becoming an Athletic Trainer</h2>
+  <div class="section">
+    <!-- Row with 2 boxes -->
+    <div class="row">
+      <div class="box" onclick="openModal(6)">Box 7</div>
+      <div class="box" onclick="openModal(7)">Box 8</div>
+    </div>
+
+    <!-- 2 Rows of 3 boxes -->
+    <div class="row">
+      <div class="box" onclick="openModal(8)">Box 9</div>
+      <div class="box" onclick="openModal(9)">Box 10</div>
+      <div class="box" onclick="openModal(10)">Box 11</div>
+    </div>
+    <div class="row">
+      <div class="box" onclick="openModal(11)">Box 12</div>
+      <div class="box" onclick="openModal(12)">Box 13</div>
+      <div class="box" onclick="openModal(13)">Box 14</div>
+    </div>
+
+    <!-- Final Row with 2 boxes -->
+    <div class="row">
+      <div class="box" onclick="openModal(14)">Box 15</div>
+      <div class="box" onclick="openModal(15)">Box 16</div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div id="modals"></div>
+
+  <div class="modal" id="modal0">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(0)">&times;</span>
+            <div class="modal-text">
+              <h3>Day-To-Day Work</h3>
+              <p>Arrive at the athletic training facility to organize and prep for practices and games that day. Tape athletes for practice. Guide student-athletes through rehabilitation exercises. Evaluate and treat injuries that occur during practice or games and provide feedback
+                .</p>
+            </div>
+            <div class="modal-img">
+              <img src="athletic trainer.jpg" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal1">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(1)">&times;</span>
+            <div class="modal-text">
+              <h3>Biology Concepts</h3>
+              <p>Topics like biology, anatomy, nutrition, sports medicine, and kinesiology are heavily incorporated into work.</p>
+            </div>
+            <div class="modal-img">
+              <img src="anatomy.jpg" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal2">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(2)">&times;</span>
+            <div class="modal-text">
+              <h3>Required Education</h3>
+              <p>Obtain a bachelor's degree (common majors are athletic training and exercise science.) Graduate from a Commission on Accreditation of Athletic Trainer Education (CAATE).</p>
+            </div>
+            <div class="modal-img">
+              <img src="masters.jpg" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal3">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(3)">&times;</span>
+            <div class="modal-text">
+              <h3>Salary Range and Work Setting</h3>
+              <p>Athletic trainers typically earn between $40,000 and $80,000 a year. Top professionals can make over $90,000. They work in schools, colleges, clinics, and with sports teams. Some work in the military or corporate settings. Hours can include evenings, weekends, and travel.</p>
+            </div>
+            <div class="modal-img">
+              <img src="whaat.png" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal4">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(4)">&times;</span>
+            <div class="modal-text">
+              <h3>Why this work?</h3>
+              <p>I want to become an athletic trainer because I enjoy helping others stay healthy, love sports, and I'm interested in how the human body moves and heals. It's a rewarding, hands-on healthcare career which will give me useful knowledge about my bodies for the rest of your lifetime.</p>
+            </div>
+            <div class="modal-img">
+              <img src="ffu.jpg" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal5">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(5)">&times;</span>
+            <div class="modal-text">
+              <h3>Box 1 Title</h3>
+              <p>This is the description or information for box. You can customize this content with anything you want.</p>
+            </div>
+            <div class="modal-img">
+              <img src="https://via.placeholder.com/300x200" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal6">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(6)">&times;</span>
+            <div class="modal-text">
+              <h3>Box 1 Title</h3>
+              <p>This is the description or information for box. You can customize this content with anything you want.</p>
+            </div>
+            <div class="modal-img">
+              <img src="https://via.placeholder.com/300x200" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal7">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(7)">&times;</span>
+            <div class="modal-text">
+              <h3>Box 1 Title</h3>
+              <p>This is the description or information for box. You can customize this content with anything you want.</p>
+            </div>
+            <div class="modal-img">
+              <img src="https://via.placeholder.com/300x200" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal8">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(8)">&times;</span>
+            <div class="modal-text">
+              <h3>Box 1 Title</h3>
+              <p>This is the description or information for box. You can customize this content with anything you want.</p>
+            </div>
+            <div class="modal-img">
+              <img src="https://via.placeholder.com/300x200" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal9">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(9)">&times;</span>
+            <div class="modal-text">
+              <h3>Box 1 Title</h3>
+              <p>This is the description or information for box. You can customize this content with anything you want.</p>
+            </div>
+            <div class="modal-img">
+              <img src="https://via.placeholder.com/300x200" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal10">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(10)">&times;</span>
+            <div class="modal-text">
+              <h3>Box 1 Title</h3>
+              <p>This is the description or information for box. You can customize this content with anything you want.</p>
+            </div>
+            <div class="modal-img">
+              <img src="https://via.placeholder.com/300x200" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal11">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(11)">&times;</span>
+            <div class="modal-text">
+              <h3>Box 1 Title</h3>
+              <p>This is the description or information for box. You can customize this content with anything you want.</p>
+            </div>
+            <div class="modal-img">
+              <img src="https://via.placeholder.com/300x200" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal12">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(12)">&times;</span>
+            <div class="modal-text">
+              <h3>Box 1 Title</h3>
+              <p>This is the description or information for box. You can customize this content with anything you want.</p>
+            </div>
+            <div class="modal-img">
+              <img src="https://via.placeholder.com/300x200" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal13">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(13)">&times;</span>
+            <div class="modal-text">
+              <h3>Box 1 Title</h3>
+              <p>This is the description or information for box. You can customize this content with anything you want.</p>
+            </div>
+            <div class="modal-img">
+              <img src="https://via.placeholder.com/300x200" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal14">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(14)">&times;</span>
+            <div class="modal-text">
+              <h3>Box 1 Title</h3>
+              <p>This is the description or information for box. You can customize this content with anything you want.</p>
+            </div>
+            <div class="modal-img">
+              <img src="https://via.placeholder.com/300x200" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal15">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(15)">&times;</span>
+            <div class="modal-text">
+              <h3>Box 1 Title</h3>
+              <p>This is the description or information for box. You can customize this content with anything you want.</p>
+            </div>
+            <div class="modal-img">
+              <img src="https://via.placeholder.com/300x200" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+  <div class="modal" id="modal16">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal(16)">&times;</span>
+            <div class="modal-text">
+              <h3>Box 1 Title</h3>
+              <p>This is the description or information for box. You can customize this content with anything you want.</p>
+            </div>
+            <div class="modal-img">
+              <img src="https://via.placeholder.com/300x200" alt="Placeholder Image"/>
+            </div>
+          </div>
+    </div>
+
   <script>
-    function openPopup() {
-      document.getElementById('popupOverlay').style.display = 'flex';
+    const modalContainer = document.getElementById("modals");
+
+//    for (let i = 0; i < 16; i++) {
+//      modalContainer.innerHTML += `
+//        <div class="modal" id="modal${i}">
+//          <div class="modal-content">
+//            <span class="close" onclick="closeModal(${i})">&times;</span>
+//            <div class="modal-text">
+//              <h3>Box ${i + 1} Title</h3>
+//              <p>This is the description or information for box ${i + 1}. You can customize this content with anything you want.</p>
+//            </div>
+//            <div class="modal-img">
+//              <img src="https://via.placeholder.com/300x200" alt="Placeholder Image"/>
+//            </div>
+//          </div>
+//        </div>
+//      `;
+//    }
+
+    function openModal(index) {
+      document.getElementById(`modal${index}`).style.display = "block";
     }
 
-    function closePopup() {
-      document.getElementById('popupOverlay').style.display = 'none';
+    function closeModal(index) {
+      document.getElementById(`modal${index}`).style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      for (let i = 0; i < 16; i++) {
+        const modal = document.getElementById(`modal${i}`);
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      }
     }
   </script>
 
